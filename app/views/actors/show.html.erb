@@ -1,0 +1,113 @@
+<div>
+  <div>
+    <h1>
+      Actor #<%= @the_actor.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/actors">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_actor/<%= @the_actor.id %>">
+          Delete actor
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Dob
+      </dt>
+      <dd>
+        <%= @the_actor.dob %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_actor.name %>
+      </dd>
+
+      <dt>
+        Bio
+      </dt>
+      <dd>
+        <%= @the_actor.bio %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_actor.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_actor.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit actor
+    </h2>
+
+    <form action="/modify_actor/<%= @the_actor.id %>"  method="post" >
+      <div>
+        <label for="dob_box">
+          Dob
+        </label>
+
+        <input type="date" id="dob_box" name="query_dob" value="<%= @the_actor.dob %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_actor.name %>">
+      </div>
+
+      <div>
+        <label for="bio_box">
+          Bio
+        </label>
+
+        <textarea id="bio_box" name="query_bio"><%= @the_actor.bio %></textarea>
+      </div>
+
+      <button>
+        Update actor
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<%# TODO: refactor query to model %>
+<% the_characters = Character.where({ :actor_id => @the_actor.id }) %>
+<ul>
+  <% the_characters.each do |character| %>
+    <% movie = Movie.where({ :id => character.movie_id }).at(0) %>
+    <li>
+      <strong><%= movie.title %></strong>:
+      <%= character.name %>
+    </li>
+  <% end %>
+</>
