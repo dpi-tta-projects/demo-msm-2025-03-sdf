@@ -18,4 +18,8 @@ class Director < ApplicationRecord
   def self.youngest
     with_dob.order({ :dob => :desc }).at(0)
   end
+
+  def self.eldest
+    with_dob.order({ :dob => :asc }).at(0)
+  end
 end

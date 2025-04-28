@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   # Routes for the Director resource:
 
   get("/directors/youngest", { :controller => "directors", :action => "youngest" })
+  get("directors/eldest", { :controller => "directors", :action => "eldest" })
 
   # CREATE
   post("/insert_director", { :controller => "directors", :action => "create" })

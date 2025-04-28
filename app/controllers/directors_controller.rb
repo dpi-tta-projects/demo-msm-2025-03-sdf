@@ -23,6 +23,12 @@ class DirectorsController < ApplicationController
     render({ :template => "directors/youngest" })
   end
 
+  def eldest
+    @director = Director.eldest
+
+    render({ :template => "directors/eldest" })
+  end
+
   def create
     the_director = Director.new
     the_director.dob = params.fetch("query_dob")
