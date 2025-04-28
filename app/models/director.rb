@@ -22,4 +22,10 @@ class Director < ApplicationRecord
   def self.eldest
     with_dob.order({ :dob => :asc }).at(0)
   end
+
+  # def movies
+  #   Movie.where({ :director_id => self.id })
+  # end
+
+  has_many :movies
 end
