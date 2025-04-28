@@ -101,13 +101,60 @@
 <hr>
 
 <%# TODO: refactor query to model %>
-<% the_characters = Character.where({ :actor_id => @the_actor.id }) %>
-<ul>
-  <% the_characters.each do |character| %>
-    <% movie = Movie.where({ :id => character.movie_id }).at(0) %>
-    <li>
-      <strong><%= movie.title %></strong>:
-      <%= character.name %>
-    </li>
-  <% end %>
-</>
+<h2>Filmography</h2>
+
+<table border="1">
+  <tbody>
+    <tr>
+      <th>
+        Title
+      </th>
+
+      <th>
+        Year
+      </th>
+
+      <th>
+        Director
+      </th>
+
+      <th>
+        Character name
+      </th>
+
+      <th>
+      </th>
+    </tr>
+
+    <% @the_characters.each do |character| %>
+      <% movie = Movie.where({ :id => character.movie_id }).at(0) %>
+      <tr>
+        <td>
+          <%= movie.title %>
+        </td>
+
+        <td>
+          <%= movie.year %>
+        </td>
+
+        <td>
+          <% director = Director.where({ :id => movie.director_id }).at(0) %>
+          <%= director.name %>
+        </td>
+
+        <td>
+          <%= character.name %>
+        </td>
+
+        <td>
+          <%# TODO %>
+          <a href="/movies/<%= movie.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+    <% end %>
+
+    
+  </tbody>
+</table>
