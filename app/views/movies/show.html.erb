@@ -12,6 +12,12 @@
       </div>
 
       <div>
+        <a href="/movies/<%= @the_movie.id %>/edit">
+          Edit movie
+        </a>
+      </div>
+
+      <div>
         <a href="/delete_movie/<%= @the_movie.id %>">
           Delete movie
         </a>
@@ -33,12 +39,17 @@
         <%= @the_movie.year %>
       </dd>
 
-      <dt>
-        Director
-      </dt>
-      <dd>
-        <%= @the_movie.director_id %>
-      </dd>
+
+      <% if @the_movie.director %>
+        <dt>
+          Director
+        </dt>
+        <dd>
+          <a href="/directors/<%= @the_movie.director_id %>">
+            <%= @the_movie.director.name %>
+          </a>
+        </dd>
+      <% end %>
 
       <dt>
         Created at
@@ -56,46 +67,4 @@
     </dl>
   </div>
 </div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit movie
-    </h2>
-
-    <form action="/modify_movie/<%= @the_movie.id %>"  method="post" >
-      <div>
-        <label for="title_box">
-          Title
-        </label>
-
-        <input type="text" id="title_box" name="query_title" value="<%= @the_movie.title %>">
-      </div>
-
-      <div>
-        <label for="year_box">
-          Year
-        </label>
-
-        <input type="text" id="year_box" name="query_year" value="<%= @the_movie.year %>">
-      </div>
-
-      <div>
-        <label for="director_id_box">
-          Director
-        </label>
-
-        <input type="text" id="director_id_box" name="query_director_id" value="<%= @the_movie.director_id %>">
-      </div>
-
-      <button>
-        Update movie
-      </button>
-    </form>
-  </div>
-</div>
-
 <hr>

@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   get("/movies/:path_id", { :controller => "movies", :action => "show" })
 
   # UPDATE
-
+  get("/movies/:path_id/edit", { :controller => "movies", :action => "edit" })
   post("/modify_movie/:path_id", { :controller => "movies", :action => "update" })
 
   # DELETE

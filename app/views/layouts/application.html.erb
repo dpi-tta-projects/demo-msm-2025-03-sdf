@@ -7,6 +7,12 @@
   </head>
 
   <body>
+    <% if notice %>
+      <div class="notice" style="color: green;"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert" style="color: red;"><%= alert %></div>
+    <% end %>
     <nav>
       <a href="/">
         Home

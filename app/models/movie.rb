@@ -19,4 +19,5 @@ class Movie < ApplicationRecord
   # end
 
   belongs_to :director
+  validates(:director_id, presence: true, numericality: { greater_than: 0 })
 end
