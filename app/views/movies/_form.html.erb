@@ -24,7 +24,11 @@
 
   <div>
     <%= form.label :director_id %>
-    <%= form.text_field :director_id %>
+    <%= form.collection_select :director_id, Director.all, :id, :name, include_blank: true %>
+    <div>
+      <%# TODO: change to link_to new_director_path after updating routes %>
+      or <a href="/directors">Add a new director</a> first
+    </div>
   </div>
 
   <%= form.submit %>
