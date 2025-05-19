@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MSM Queries</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= render "shared/meta" %>
+    <%= render "shared/cdn_links" %>
   </head>
 
   <body>
-    <% if notice %>
-      <div class="notice" style="color: green;"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-      <div class="alert" style="color: red;"><%= alert %></div>
-    <% end %>
-    <nav>
-      <a href="/">
-        Home
-      </a>
-    </nav>
-
+    <%= render "shared/nav" %>
+    <%= render "shared/flash" %>
     <%= yield %>
-    <a href="/about.html">About</a>
+    <%= render "shared/footer" %>
   </body>
 </html>
