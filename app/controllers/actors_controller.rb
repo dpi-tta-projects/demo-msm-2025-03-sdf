@@ -1,6 +1,7 @@
 class ActorsController < ApplicationController
   def index
-    matching_actors = Actor.all
+    # TODO：add pagination
+    matching_actors = Actor.all.limit(10)
 
     @list_of_actors = matching_actors.order({ :created_at => :desc })
 
@@ -8,13 +9,13 @@ class ActorsController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
-
-    matching_actors = Actor.where({ :id => the_id })
-
-    @the_actor = matching_actors.at(0)
+    @the_actor = Actor.find(params.fetch("id"))
 
     render({ :template => "actors/show" })
+  end
+
+  def new
+    render({ :template => "actors/new" })
   end
 
   def create
@@ -31,8 +32,14 @@ class ActorsController < ApplicationController
     end
   end
 
+  def edit
+    @the_actor = Actor.find(params.fetch("id"))
+
+    render({ :template => "actors/edit" })
+  end
+
   def update
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("id")
     the_actor = Actor.where({ :id => the_id }).at(0)
 
     the_actor.dob = params.fetch("query_dob")

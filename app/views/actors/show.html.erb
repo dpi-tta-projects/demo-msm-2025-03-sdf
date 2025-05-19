@@ -12,7 +12,14 @@
       </div>
 
       <div>
-        <a href="/delete_actor/<%= @the_actor.id %>">
+        <a href="/actors/<%= @the_actor.id %>/edit">
+          Edit actor
+        </a>
+      </div>
+
+      <div>
+        <!-- TODO: fix link delete syntax -->
+        <a href="/actors/<%= @the_actor.id %>" data-method="delete">
           Delete actor
         </a>
       </div>
@@ -54,47 +61,6 @@
         <%= time_ago_in_words(@the_actor.updated_at) %> ago
       </dd>
     </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit actor
-    </h2>
-
-    <form action="/modify_actor/<%= @the_actor.id %>"  method="post" >
-      <div>
-        <label for="dob_box">
-          Dob
-        </label>
-
-        <input type="date" id="dob_box" name="query_dob" value="<%= @the_actor.dob %>">
-      </div>
-
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name" value="<%= @the_actor.name %>">
-      </div>
-
-      <div>
-        <label for="bio_box">
-          Bio
-        </label>
-
-        <textarea id="bio_box" name="query_bio"><%= @the_actor.bio %></textarea>
-      </div>
-
-      <button>
-        Update actor
-      </button>
-    </form>
   </div>
 </div>
 
