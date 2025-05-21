@@ -4,34 +4,6 @@
       Add a new actor
     </h1>
 
-    <form action="/actors" method="post">
-      <div>
-        <label for="dob_box">
-          Dob
-        </label>
-
-        <input type="date" id="dob_box" name="query_dob">
-      </div>
-
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="bio_box">
-          Bio
-        </label>
-
-        <textarea id="bio_box" name="query_bio" rows="3"></textarea>
-      </div>
-
-      <button>
-        Create actor
-      </button>
-    </form>
+    <%= render "actors/form", actor: @actor %>
   </div>
 </div>

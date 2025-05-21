@@ -17,4 +17,6 @@ class Actor < ApplicationRecord
   # end
 
   has_many :characters
+
+  validates :name, presence: true
 end

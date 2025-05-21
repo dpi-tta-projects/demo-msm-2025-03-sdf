@@ -15,42 +15,33 @@ class ActorsController < ApplicationController
   end
 
   def new
+    @actor = Actor.new
     render({ :template => "actors/new" })
   end
 
   def create
-    the_actor = Actor.new
-    the_actor.dob = params.fetch("query_dob")
-    the_actor.name = params.fetch("query_name")
-    the_actor.bio = params.fetch("query_bio")
+    @actor = Actor.new(actor_params)
 
-    if the_actor.valid?
-      the_actor.save
-      redirect_to("/actors", { :notice => "Actor created successfully." })
+    if @actor.save
+      redirect_to(actor_path(@actor), notice: "Actor created successfully.")
     else
-      redirect_to("/actors", { :alert => the_actor.errors.full_messages.to_sentence })
+      render :new
     end
   end
 
   def edit
-    @the_actor = Actor.find(params.fetch("id"))
+    @actor = Actor.find(params.fetch("id"))
 
     render({ :template => "actors/edit" })
   end
 
   def update
-    the_id = params.fetch("id")
-    the_actor = Actor.where({ :id => the_id }).at(0)
+    @actor = Actor.find(params.fetch("id"))
 
-    the_actor.dob = params.fetch("query_dob")
-    the_actor.name = params.fetch("query_name")
-    the_actor.bio = params.fetch("query_bio")
-
-    if the_actor.valid?
-      the_actor.save
+    if @actor.update(actor_params)
       redirect_to("/actors/#{the_actor.id}", { :notice => "Actor updated successfully."} )
     else
-      redirect_to("/actors/#{the_actor.id}", { :alert => the_actor.errors.full_messages.to_sentence })
+      render :edit
     end
   end
 
@@ -61,5 +52,11 @@ class ActorsController < ApplicationController
     the_actor.destroy
 
     redirect_to("/actors", { :notice => "Actor deleted successfully."} )
+  end
+
+  private
+
+  def actor_params
+    params.require(:actor).permit(:dob, :name, :bio)
   end
 end
