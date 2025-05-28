@@ -1,10 +1,10 @@
 <% if @movie.errors.any? %>
-  <div id="error_explanation">
-    <h2 style="color: red;"><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+  <div id="error_explanation" class="alert alert-danger">
+    <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
 
     <ul>
       <% @movie.errors.each do |error| %>
-        <li style="color: red;"><%= error.full_message %></li>
+        <li><%= error.full_message %></li>
       <% end %>
     </ul>
   </div>
@@ -12,24 +12,24 @@
 
 <%= form_with(model: @movie) do |form| %>
 
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="my-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :year %>
-    <%= form.text_field :year %>
+  <div class="mb-3">
+    <%= form.label :year, class: "form-label" %>
+    <%= form.text_field :year, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :director_id %>
-    <%= form.collection_select :director_id, Director.all, :id, :name, include_blank: true %>
-    <div>
+  <div class="mb-3">
+    <%= form.label :director_id, class: "form-label" %>
+    <%= form.collection_select :director_id, Director.all, :id, :name, { include_blank: true }, { class: "form-control" } %>
+    <div class="form-text">
       <%# TODO: change to link_to new_director_path after updating routes %>
       or <a href="/directors">Add a new director</a> first
     </div>
   </div>
 
-  <%= form.submit %>
+  <%= form.submit class: "my-2 btn btn-primary" %>
 <% end %>

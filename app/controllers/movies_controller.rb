@@ -28,6 +28,7 @@ class MoviesController < ApplicationController
 
     if @movie.valid?
       @movie.save
+      # TODO: redirect to movies#show
       redirect_to("/movies", { :notice => "Movie created successfully." })
     else
       render({ :template => "movies/new" })
