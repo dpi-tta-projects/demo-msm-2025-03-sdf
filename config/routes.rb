@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "movies#index"
+
   # Routes for the Character resource:
 
   # CREATE
@@ -55,8 +57,6 @@ Rails.application.routes.draw do
   get("/delete_director/:path_id", { :controller => "directors", :action => "destroy" })
 
   #------------------------------
-
-  get("/", { :controller => "misc", :action => "homepage" })
 
   # TODO: add directors
   #   youngest director
