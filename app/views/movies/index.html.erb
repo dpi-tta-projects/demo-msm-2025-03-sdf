@@ -13,74 +13,13 @@
 </div>
 
 <hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
 
-        <th>
-          Title
-        </th>
-
-        <th>
-          Year
-        </th>
-
-        <th>
-          Director
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @movies.each do |movie| %>
-      <tr>
-        <td>
-          <%= movie.id %>
-        </td>
-
-        <td>
-          <%= movie.title %>
-        </td>
-
-        <td>
-          <%= movie.year %>
-        </td>
-
-        <td>
-          <%= movie.director_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(movie.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(movie.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/movies/<%= movie.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mx-2">
+  <% @movies.each do |movie| %>
+    <div class="col">
+      <%= render("card", movie: movie) %>
+    </div>
+  <% end %>
 </div>
-
-<hr>
 
 <%= paginate @movies %>
