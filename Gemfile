@@ -111,3 +111,5 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "kaminari", "~> 1.2"

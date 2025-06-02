@@ -45,33 +45,33 @@
         </th>
       </tr>
 
-      <% @list_of_movies.each do |a_movie| %>
+      <% @movies.each do |movie| %>
       <tr>
         <td>
-          <%= a_movie.id %>
+          <%= movie.id %>
         </td>
 
         <td>
-          <%= a_movie.title %>
+          <%= movie.title %>
         </td>
 
         <td>
-          <%= a_movie.year %>
+          <%= movie.year %>
         </td>
 
         <td>
-          <%= a_movie.director_id %>
+          <%= movie.director_id %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_movie.created_at) %> ago
+          <%= time_ago_in_words(movie.created_at) %> ago
         </td>
         <td>
-          <%= time_ago_in_words(a_movie.updated_at) %> ago
+          <%= time_ago_in_words(movie.updated_at) %> ago
         </td>
 
         <td>
-          <a href="/movies/<%= a_movie.id %>">
+          <a href="/movies/<%= movie.id %>">
             Show details
           </a>
         </td>
@@ -82,3 +82,5 @@
 </div>
 
 <hr>
+
+<%= paginate @movies %>
