@@ -1,27 +1,24 @@
-<div>
-  <div>
+<div class="container">
+  <div class="d-flex justify-content-between">
     <h1>
       List of all movies
     </h1>
+    <%= link_to new_movie_path do %>
+      <%# TODO: replace + with a fontawesome icon %>
+      <span class="btn btn-outline-primary">+</span>
+    <% end %>
   </div>
-</div>
+  <hr>
 
-<hr>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+    <% @movies.each do |movie| %>
+      <div class="col">
+        <%= render("card", movie: movie) %>
+      </div>
+    <% end %>
+  </div>
 
-<div>
-  <a href="/movies/new">Add a new movie</a>
-</div>
-
-<hr>
-
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mx-2">
-  <% @movies.each do |movie| %>
-    <div class="col">
-      <%= render("card", movie: movie) %>
-    </div>
-  <% end %>
-</div>
-
-<div class="d-flex justify-content-center mt-5">
-  <%= paginate @movies %>
+  <div class="d-flex justify-content-center mt-5">
+    <%= paginate @movies %>
+  </div>
 </div>
