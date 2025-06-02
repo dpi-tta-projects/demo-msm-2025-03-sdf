@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.order({ :created_at => :desc }).page(params[:page]).per(10)
+    @movies = Movie.order({ :created_at => :desc }).page(params[:page])
   end
 
   def show
