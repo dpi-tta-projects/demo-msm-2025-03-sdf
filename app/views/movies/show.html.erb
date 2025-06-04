@@ -11,7 +11,7 @@
 
         <div>
           <%# TODO: add confirm step %>
-          <%= button_to movie_path(@movie), class: "btn btn-link link-danger", method: :delete do %>
+          <%= button_to movie_path(@movie), class: "btn btn-link link-danger", method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
             <i class="bi bi-trash3"></i>
           <% end %>
         </div>
@@ -34,15 +34,14 @@
               <strong>
                 Directed by
               </strong>
-                <a href="/directors/<%= @movie.director_id %>">
-                  <%= @movie.director.name %>
-                </a>
+              <a href="/directors/<%= @movie.director_id %>">
+                <%= @movie.director.name %>
+              </a>
             </div>
           <% end %>
         </div>
       </div>
     </div>
-
 
   </div>
 </div>
