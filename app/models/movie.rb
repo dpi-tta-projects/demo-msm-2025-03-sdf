@@ -20,4 +20,8 @@ class Movie < ApplicationRecord
 
   belongs_to :director
   validates(:director_id, presence: true, numericality: { greater_than: 0 })
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end
