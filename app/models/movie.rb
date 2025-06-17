@@ -13,11 +13,7 @@
 #  director_id :integer
 #
 class Movie < ApplicationRecord
-
-  # def director
-  #   Director.where({ :id => self.director_id }).at(0)
-  # end
-
+  include Ransackable
   belongs_to :director
   validates(:director_id, presence: true, numericality: { greater_than: 0 })
 
