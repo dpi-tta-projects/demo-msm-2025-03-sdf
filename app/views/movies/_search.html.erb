@@ -1,0 +1,11 @@
+<%= search_form_for q, class: "d-flex align-items-center" do |f| %>
+  <div class="input-group">
+    <%= f.label :title_or_year_or_director_name_cont, "Search", class: "visually-hidden" %>
+    <span class="input-group-text rounded-start">
+      <i class="bi bi-search"></i>
+    </span>
+    <%= f.search_field :title_or_year_or_director_name_cont, class: "form-control", autofocus: true %>
+    <%= f.submit :class => "btn btn-primary" %>
+    <%= link_to 'Clear', movies_path, class: "btn btn-outline-danger" %>
+  </div>
+<% end %>

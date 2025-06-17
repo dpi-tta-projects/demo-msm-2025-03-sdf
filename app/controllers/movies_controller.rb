@@ -2,7 +2,8 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.order({ :created_at => :desc }).page(params[:page])
+    @q = Movie.ransack(params[:q])
+    @movies = @q.result.order({ :created_at => :desc }).page(params[:page])
 
     @breadcrumbs = [
       {content: "Movies"}
