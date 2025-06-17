@@ -1,11 +1,15 @@
-<!--
-TODO: style w/ bootstrap alert
-https://getbootstrap.com/docs/5.3/components/alerts/
--->
+<div class="container">
+  <% if notice.present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
 
-<% if notice %>
-  <div class="notice" style="color: green;"><%= notice %></div>
-<% end %>
-<% if alert %>
-  <div class="alert" style="color: red;"><%= alert %></div>
-<% end %>
+  <% if alert.present? %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+</div>
