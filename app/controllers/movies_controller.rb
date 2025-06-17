@@ -1,20 +1,30 @@
 class MoviesController < ApplicationController
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+
   def index
     @movies = Movie.order({ :created_at => :desc }).page(params[:page])
+
+    @breadcrumbs = [
+      {content: "Movies"}
+    ]
   end
 
   def show
-    the_id = params.fetch("id")
-
-    matching_movies = Movie.where({ :id => the_id })
-
-    @movie = matching_movies.at(0)
+    @breadcrumbs = [
+      {content: "Movies", href: movies_path},
+      {content: @movie.to_s}
+    ]
 
     render({ :template => "movies/show" })
   end
 
   def new
     @movie = Movie.new
+
+    @breadcrumbs = [
+      {content: "Movies", href: movies_path},
+      {content: "New"}
+    ]
 
     render({ :template => "movies/new" })
   end
@@ -32,19 +42,21 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    the_id = params.fetch("id")
-
-    matching_movies = Movie.where({ :id => the_id })
-
-    @movie = matching_movies.at(0)
+    @breadcrumbs = [
+      {content: "Movies", href: movies_path},
+      {content: @movie.to_s, href: movie_path(@movie)},
+      {content: "Edit"}
+    ]
 
     render({ :template => "movies/edit" })
   end
 
   def update
-    the_id = params.fetch("id")
-    @movie = Movie.where({ :id => the_id }).at(0)
-
+    @breadcrumbs = [
+      {content: "Movies", href: movies_path},
+      {content: @movie.to_s, href: movie_path(@movie)},
+      {content: "Edit"}
+    ]
     if @movie.update(movie_params)
       redirect_to("/movies/#{@movie.id}", { :notice => "Movie updated successfully."} )
     else
@@ -53,11 +65,7 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("id")
-    movie = Movie.where({ :id => the_id }).at(0)
-
-    movie.destroy
-
+    @movie.destroy
     redirect_to("/movies", { :notice => "Movie deleted successfully."} )
   end
 
@@ -65,5 +73,9 @@ class MoviesController < ApplicationController
 
   def movie_params
     params.require("movie").permit(:title, :year, :director_id)
+  end
+
+  def set_movie
+    @movie = Movie.find(params.fetch("id"))
   end
 end
