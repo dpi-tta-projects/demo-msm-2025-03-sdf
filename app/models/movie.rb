@@ -24,4 +24,8 @@ class Movie < ApplicationRecord
   def to_param
     "#{id}-#{title.parameterize}"
   end
+
+  def to_s
+    "#{title} (#{year})"
+  end
 end
