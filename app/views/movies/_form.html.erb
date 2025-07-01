@@ -23,6 +23,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :image, class: "form-label" %>
+    <%= form.text_field :image, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :director_id, class: "form-label" %>
     <%= form.collection_select :director_id, Director.all, :id, :name, { include_blank: true }, { class: "form-control" } %>
     <div class="form-text">

@@ -10,10 +10,20 @@
 #  year        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  author_id   :bigint
 #  director_id :integer
+#
+# Indexes
+#
+#  index_movies_on_author_id  (author_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (author_id => users.id)
 #
 class Movie < ApplicationRecord
   include Ransackable
+  belongs_to :author, class_name: "User"
   belongs_to :director
   validates(:director_id, presence: true, numericality: { greater_than: 0 })
 

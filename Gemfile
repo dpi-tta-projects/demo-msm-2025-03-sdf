@@ -116,3 +116,4 @@ end
 
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.1"
+gem "pundit", "~> 2.5"
