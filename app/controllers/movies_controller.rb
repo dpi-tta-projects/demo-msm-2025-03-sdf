@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_movie
 
   def index
     @q = Movie.ransack(params[:q])
@@ -31,12 +33,13 @@ class MoviesController < ApplicationController
   end
 
   def create
+    # @movie = current_user.authored_movies.new(movie_params)
     @movie = Movie.new(movie_params)
+    @movie.author = current_user
 
     if @movie.valid?
       @movie.save
-      # TODO: redirect to movies#show
-      redirect_to("/movies", { :notice => "Movie created successfully." })
+      redirect_to(@movie, { :notice => "Movie created successfully." })
     else
       render({ :template => "movies/new" })
     end
@@ -73,10 +76,14 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require("movie").permit(:title, :year, :director_id)
+    params.require("movie").permit(:title, :year, :director_id, :image)
   end
 
   def set_movie
     @movie = Movie.find(params.fetch("id"))
+  end
+
+  def authorize_movie
+    authorize(@movie || Movie)
   end
 end
