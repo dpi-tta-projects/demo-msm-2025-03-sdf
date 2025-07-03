@@ -22,6 +22,7 @@
 #  fk_rails_...  (author_id => users.id)
 #
 class Movie < ApplicationRecord
+  include Likeable
   include Ransackable
   belongs_to :author, class_name: "User"
   belongs_to :director

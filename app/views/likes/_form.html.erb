@@ -1,0 +1,9 @@
+<%= form_with(model: like) do |form| %>
+
+  <%= form.hidden_field :likeable_id %>
+  <%= form.hidden_field :likeable_type %>
+
+  <%= form.button class: "btn btn-link" do %>
+    <i class="bi bi-balloon-heart text-danger fs-1"></i>
+  <% end %>
+<% end %>

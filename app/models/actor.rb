@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 class Actor < ApplicationRecord
+  include Likeable
 
   # def characters
   #   Character.where({ :actor_id => self.id })
