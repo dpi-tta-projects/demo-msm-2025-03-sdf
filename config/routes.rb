@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  # TODO: only need create, destroy
+  resources :likes
+
   # Routes for the Character resource:
 
   # CREATE
