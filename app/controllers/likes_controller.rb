@@ -5,12 +5,14 @@ class LikesController < ApplicationController
     @like = Like.new(like_params)
     @like.user = current_user
 
-    if @like.valid?
-      @like.save
-      redirect_to(@like, { :notice => "Like created successfully." })
-    else
-      # TODO: change this wording
-      flash[:error] = "Unable to like this"
+    respond_to do |format|
+      if @like.save
+        format.html { redirect_to(@like, { :notice => "Like created successfully." }) }
+        format.js { render template: "likes/create" }
+      else
+        format.html { redirect_to(@like, { :error => "Unable to like this" }) }
+        format.js { render template: "likes/create" }
+      end
     end
   end
 

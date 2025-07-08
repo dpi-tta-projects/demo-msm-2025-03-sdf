@@ -1,0 +1,8 @@
+// find the like form/button
+var existing_like = $("#new_like");
+
+// var added_like = render like/destroy
+var added_like = "<%= j(render('likes/like', likeable: @like.likeable)) %>";
+
+// replace like form with added_like
+existing_like.replaceWith(added_like);
