@@ -17,9 +17,18 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    like = Like.find_by(id: params[:id])
-    like.destroy
-    redirect_to(like.likeable, { :notice => "Like deleted successfully."} )
+    @like = Like.find_by(id: params[:id])
+
+    respond_to do |format|
+      if @like.destroy
+        format.html { redirect_to(@like.likeable, { :notice => "Like deleted successfully."} ) }
+        format.js { render template: "likes/destroy" }
+      else
+        format.html { redirect_to(@like.likeable, { :error => "Unable to un-like this."} ) }
+        format.js { render template: "likes/destroy" }
+      end
+    end
+
   end
 
   private
