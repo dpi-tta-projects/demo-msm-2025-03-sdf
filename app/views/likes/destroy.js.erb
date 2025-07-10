@@ -1,0 +1,12 @@
+// find the element with like_id
+var deleted_like = $("#<%= dom_id(@like) %>");
+
+// render new like form
+var new_like_form = "<%= j(render('likes/like', likeable: @like.likeable)) %>";
+
+// replace existing like with new like form
+deleted_like.replaceWith(new_like_form);
+
+// add bounce to new form
+var rendered_form = $("#new_like")
+rendered_form.addClass("bounce-animation");

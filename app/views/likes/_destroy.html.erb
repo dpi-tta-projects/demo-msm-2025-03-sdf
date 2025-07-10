@@ -1,3 +1,5 @@
-<%= button_to like_path(like), class: "btn btn-link", method: :delete do %>
-  <i class="bi bi-balloon-heart-fill text-danger fs-1"></i>
+<%= form_with model: like, id: dom_id(like), method: :delete, local: false do %>
+  <button type="submit" class="btn btn-link" id="<%= dom_id(like) %>_button">
+    <i class="bi bi-balloon-heart-fill text-danger fs-1"></i>
+  </button>
 <% end %>
