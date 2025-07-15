@@ -1,0 +1,10 @@
+<%= form_with url: search_path, class: "d-flex align-items-center", method: :get do |f| %>
+  <div class="input-group">
+    <%= f.label :query, "Search", class: "visually-hidden" %>
+    <span class="input-group-text rounded-start">
+      <i class="bi bi-search"></i>
+    </span>
+    <%= f.search_field :query, class: "form-control", autofocus: true, value: @query %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

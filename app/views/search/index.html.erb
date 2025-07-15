@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>
+      Search
+    </h1>
+  </div>
+  <%= render "form" %>
+  <hr>
+
+  <% if @results.empty? %>
+    <p>No results found</p>
+  <% end %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+    <% @results.each do |result| %>
+      <div class="col">
+        <%= render("movies/card", movie: result.searchable) if result.searchable_type == "Movie" %>
+        <%= render("actors/card", actor: result.searchable) if result.searchable_type == "Actor" %>
+        <%= render("directors/card", director: result.searchable) if result.searchable_type == "Director" %>
+        <%= render("characters/card", character: result.searchable) if result.searchable_type == "Character" %>
+      </div>
+    <% end %>
+  </div>
+</div>

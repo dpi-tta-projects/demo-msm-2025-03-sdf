@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # TODO: only need create, destroy
   resources :likes
 
+  get("search", { controller: "search", action: "index" })
+  # resources :search, only: [:index]
+
   # Routes for the Character resource:
 
   # CREATE
