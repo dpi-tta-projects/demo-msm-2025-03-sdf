@@ -5,19 +5,30 @@ class LikesController < ApplicationController
     @like = Like.new(like_params)
     @like.user = current_user
 
-    if @like.valid?
-      @like.save
-      redirect_to(@like, { :notice => "Like created successfully." })
-    else
-      # TODO: change this wording
-      flash[:error] = "Unable to like this"
+    respond_to do |format|
+      if @like.save
+        format.html { redirect_to(@like, { :notice => "Like created successfully." }) }
+        format.js { render template: "likes/create" }
+      else
+        format.html { redirect_to(@like, { :error => "Unable to like this" }) }
+        format.js { render template: "likes/create" }
+      end
     end
   end
 
   def destroy
-    like = Like.find_by(id: params[:id])
-    like.destroy
-    redirect_to(like.likeable, { :notice => "Like deleted successfully."} )
+    @like = Like.find_by(id: params[:id])
+
+    respond_to do |format|
+      if @like.destroy
+        format.html { redirect_to(@like.likeable, { :notice => "Like deleted successfully."} ) }
+        format.js { render template: "likes/destroy" }
+      else
+        format.html { redirect_to(@like.likeable, { :error => "Unable to un-like this."} ) }
+        format.js { render template: "likes/destroy" }
+      end
+    end
+
   end
 
   private
