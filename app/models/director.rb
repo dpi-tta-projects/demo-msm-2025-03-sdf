@@ -26,4 +26,7 @@ class Director < ApplicationRecord
   end
 
   has_many :movies
+
+  include PgSearch::Model
+  multisearchable against: [:bio, :name]
 end

@@ -266,6 +266,9 @@ GEM
       mime-types (~> 3.0)
     orm_adapter (0.5.0)
     pg (1.5.6)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -478,6 +481,7 @@ DEPENDENCIES
   kaminari (~> 1.2)
   openai-chat
   pg (~> 1.1)
+  pg_search (~> 2.3)
   pry-rails
   puma
   pundit (~> 2.5)

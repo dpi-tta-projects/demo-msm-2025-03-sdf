@@ -28,6 +28,9 @@ class Movie < ApplicationRecord
   belongs_to :director
   validates(:director_id, presence: true, numericality: { greater_than: 0 })
 
+  include PgSearch::Model
+  multisearchable against: [:title, :description, :year]
+
   def to_param
     "#{id}-#{title.parameterize}"
   end

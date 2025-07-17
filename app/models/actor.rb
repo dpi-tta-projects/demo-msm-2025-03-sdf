@@ -20,4 +20,7 @@ class Actor < ApplicationRecord
   has_many :characters
 
   validates :name, presence: true
+
+  include PgSearch::Model
+  multisearchable against: [:bio, :name]
 end
