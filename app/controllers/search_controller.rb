@@ -4,6 +4,9 @@ class SearchController < ApplicationController
     @query = params[:query]
     @results = PgSearch.multisearch(@query)
 
-    render "search/index"
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 end
