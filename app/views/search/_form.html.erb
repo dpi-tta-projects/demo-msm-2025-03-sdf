@@ -1,10 +1,10 @@
-<%= form_with url: search_path, method: :get, local: false, html: { id: "search-form", class: "d-flex align-items-center", data: { controller: "search", search_target: "form" } } do |f| %>
+<%= form_with url: search_path, method: :get, local: false, html: { id: "search-form", class: "d-flex align-items-center", data: { controller: "search--form", 'search--form-target': "form" } } do |f| %>
   <div class="input-group">
     <%= f.label :query, "Search", class: "visually-hidden" %>
     <span class="input-group-text rounded-start">
       <i class="bi bi-search"></i>
     </span>
-    <%= f.search_field :query, class: "form-control", autofocus: true, value: query, id: "search-input", data: { action: "input->search#fetchResults", search_target: "input" } %>
+    <%= f.search_field :query, class: "form-control", autofocus: true, autocomplete: "off", value: query, id: "search-input", data: { action: "input->search--form#fetchResults", search_target: "input" } %>
     <%= f.submit "Search", class: "btn btn-primary" %>
   </div>
 <% end %>

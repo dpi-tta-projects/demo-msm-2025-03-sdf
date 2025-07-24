@@ -2,10 +2,9 @@ class SearchController < ApplicationController
 
   def index
     @query = params[:query]
-    @results = PgSearch.multisearch(@query)
+    @results = PgSearch.multisearch(@query).limit(25)
 
     respond_to do |format|
-      format.html
       format.js
     end
   end
