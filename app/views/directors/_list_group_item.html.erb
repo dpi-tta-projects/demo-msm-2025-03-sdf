@@ -1,0 +1,6 @@
+<%= link_to "directors/#{director.id}", class: "list-group-item list-group-item-action d-flex justify-content-between align-items-start" do %>
+  <div class="ms-2 me-auto">
+    <div class="fw-bold"><%= director.name %></div>
+    <%= director.bio.truncate_words(8) %>
+  </div>
+<% end %>

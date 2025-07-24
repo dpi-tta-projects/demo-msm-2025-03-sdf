@@ -1,0 +1,4 @@
+<%= render("movies/list_group_item", movie: result.searchable) if result.searchable_type == "Movie" %>
+<%= render("actors/list_group_item", actor: result.searchable) if result.searchable_type == "Actor" %>
+<%= render("directors/list_group_item", director: result.searchable) if result.searchable_type == "Director" %>
+<%= render("characters/list_group_item", character: result.searchable) if result.searchable_type == "Character" %>

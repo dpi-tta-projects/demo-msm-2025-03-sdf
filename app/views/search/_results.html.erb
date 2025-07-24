@@ -1,0 +1,7 @@
+<div id="search-results">
+  <% if results.empty? %>
+    <p>No results found</p>
+  <% end %>
+
+  <%= render "search/list_group", results: results %>
+</div>
